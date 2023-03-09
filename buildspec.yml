@@ -18,5 +18,5 @@ phases:
       - echo push latest Docker images to ECR...
       - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/group2capstone2:latest
       - printf '[{"name":"initgroup2capstone2", "imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/group2capstone2:latest"}]' > imagedefinitions.json
-  artifacts:
-    files: imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
