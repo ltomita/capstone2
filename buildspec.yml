@@ -7,6 +7,9 @@ phases:
     commands :
       - echo logging in to AWS ECR...
       - $(aws ecr get-login --no-include-email --region us-west-2)
+      - echo Installing AWS ECS CLI...
+      - curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+      - chmod +x /usr/local/bin/ecs-cli
   build:
     commands:
       - echo build Docker image on 'date'
