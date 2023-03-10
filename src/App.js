@@ -5,7 +5,7 @@ import PersonList from './components/PersonList.js';
 function App() {
   return (
     <div className="App">
-	<h1> Hello! </h1>
+	<h1> Hi! </h1>
 	  <PersonList/>
     </div>
   )
