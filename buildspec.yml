@@ -5,6 +5,11 @@ phases:
       - echo install step... 
   pre_build:
     commands :
+      - echo "Installing Terraform"
+      - curl -o terraform.zip https://releases.hashicorp.com/terraform/1.1.0/terraform_1.1.0_linux_amd64.zip
+      - unzip -o terraform.zip
+      - chmod +x terraform
+      - mv terraform /usr/local/bin/
       - echo logging in to AWS ECR...
       - $(aws ecr get-login --no-include-email --region us-west-2)
       - echo Installing AWS ECS CLI...
@@ -12,6 +17,11 @@ phases:
       - chmod +x /usr/local/bin/ecs-cli
   build:
     commands:
+      - echo "Building infrastructure with Terraform"            
+      - terraform version
+      - terraform init 
+      #- terraform destroy -target aws_ecr_repository.group1-capstone2b-final
+      - terraform apply --auto-approve 
       - echo build Docker image on 'date'
       - docker build -t group2capstone2:latest .
       - docker tag group2capstone2:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/group2capstone2:latest
